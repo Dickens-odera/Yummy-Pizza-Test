@@ -16,10 +16,10 @@ class PizzaApiResource extends JsonResource
     {
         //return parent::toArray($request);
         return array(
-            'id'=>$this->id,
-            'title'=>$this->title,
-            'description'=>$this->description,
-            'avartar'=>$this->avartar
+            'id'=>$request->id,
+            'title'=>$request->title,
+            'description'=>$request->description,
+            'avartar'=>$request->avartar
         );
     }
     public function with($request)
