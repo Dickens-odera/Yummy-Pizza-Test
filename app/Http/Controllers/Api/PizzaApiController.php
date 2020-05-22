@@ -13,6 +13,7 @@ class PizzaApiController extends Controller
     public $pizzas;
     public function __construct(Pizzas $pizzas)
     {
+        $this->middleware('api');
         $this->pizzas = $pizzas;
     }
     /**

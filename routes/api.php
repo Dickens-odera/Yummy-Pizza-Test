@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(['prefix'=>'v1'], function()
+Route::group(['prefix' => 'v1', 'middleware' => 'api'], function()
 {
-    Route::post('/pizzas','Api\PizzaApiController@store')->name('pizzas.api.add');
-    Route::get('/pizzas','Api\PizzaApiController@index')->name('pizzas.all');
+    Route::post('pizzas','Api\PizzaApiController@store')->name('pizzas.api.add');
+    Route::get('pizzas','Api\PizzaApiController@index')->name('pizzas.all');
+    Route::put('pizzas/{id}','Api\PizzaApiController@update')->name('pizzas.update');
 });

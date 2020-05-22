@@ -53,4 +53,36 @@ class ShoppingCartTest extends TestCase
         $response->assertOk();
         $this->assertCount(1, Pizzas::all());
     }
+    /**
+     * @test
+     */
+    public function test_that_a_pizza_item_can_be_updated()
+    {
+        $this->withoutExceptionHandling();
+        $item = factory(Pizzas::class)->create([
+            'title'=>'some pizza type title',
+            'description'=>'some pizza type description',
+            'price'=>1000,
+            'avartar'=>'some pizza type image here'
+        ]);
+        $this->assertInstanceOf(Pizzas::class, $item);
+
+
+        $temp_data = factory(Pizzas::class)->make([
+            'title'=>'temporary pizza title',
+            'description'=>'temporary pizza description',
+            'price'=>300,
+            'avartar'=>'temporary pizza image goes here'
+        ]);
+        $data = [
+            'title'=>$temp_data->title,
+            'description'=>$temp_data->description,
+            'price'=>$temp_data->price,
+            'avartar'=>$temp_data->avartar
+        ];
+        $this->assertNotEquals($item->title, $data['title']);
+        //$item->fresh();
+        $response = $this->put('pizzas/'.$item->id, $data);
+        $response->assertStatus(200);
+    }
 }
