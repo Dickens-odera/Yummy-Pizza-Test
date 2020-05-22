@@ -24,6 +24,21 @@ class ShoppingCartTest extends TestCase
     /**
      * @test
      */
+    public function test_that_pizza_items_get_loaded_on_home_page()
+    {
+        $this->withoutExceptionHandling();
+        $data = factory(Pizzas::class)->make();
+        $response = $this->get(route('pizzas.all'),array(
+            'title'=>$data->title,
+            'description'=>$data->description,
+            'price'=>$data->price,
+            'avartar'=>$data->avartar
+        ));
+        $response->assertStatus(200);
+    }
+    /**
+     * @test
+     */
     public function test_that_a_pizza_item_can_be_added()
     {
         $this->withoutExceptionHandling();

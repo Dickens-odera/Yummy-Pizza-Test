@@ -10,6 +10,11 @@ use App\Pizzas;
 
 class PizzaApiController extends Controller
 {
+    public $pizzas;
+    public function __construct(Pizzas $pizzas)
+    {
+        $this->pizzas = $pizzas;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,7 @@ class PizzaApiController extends Controller
      */
     public function index()
     {
-        //
+        return PizzaApiResource::collection($this->pizzas->all());
     }
 
     /**
@@ -36,7 +41,7 @@ class PizzaApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pizzas $pizzas)
+    public function store(Request $request)
     {
         $items = array(
             'title'=>$request->title,
@@ -44,7 +49,7 @@ class PizzaApiController extends Controller
             'price'=>$request->price,
             'avartar'=>$request->avartar
         );
-        $pizzas->create($items);
+        $this->pizzas->create($items);
         return new PizzaApiResource($items);
     }
 

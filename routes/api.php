@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix'=>'v1'], function()
 {
     Route::post('/pizzas','Api\PizzaApiController@store')->name('pizzas.api.add');
+    Route::get('/pizzas','Api\PizzaApiController@index')->name('pizzas.all');
 });
