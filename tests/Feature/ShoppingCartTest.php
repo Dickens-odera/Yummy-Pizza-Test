@@ -6,6 +6,7 @@ use App\Pizzas;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
 
 class ShoppingCartTest extends TestCase
 {
@@ -59,20 +60,14 @@ class ShoppingCartTest extends TestCase
     public function test_that_a_pizza_item_can_be_updated()
     {
         $this->withoutExceptionHandling();
-        $item = factory(Pizzas::class)->create([
-            'title'=>'some pizza type title',
-            'description'=>'some pizza type description',
-            'price'=>1000,
-            'avartar'=>'some pizza type image here'
-        ]);
+        $item = factory(Pizzas::class)->create();
         $this->assertInstanceOf(Pizzas::class, $item);
 
-
         $temp_data = factory(Pizzas::class)->make([
-            'title'=>'temporary pizza title',
-            'description'=>'temporary pizza description',
-            'price'=>300,
-            'avartar'=>'temporary pizza image goes here'
+            'title'=>'test',
+            'description'=>'test desc',
+            'price'=>1000,
+            'avartar'=>UploadedFile::fake()->image('pizza2.jpg',200,200)
         ]);
         $data = [
             'title'=>$temp_data->title,
@@ -82,7 +77,7 @@ class ShoppingCartTest extends TestCase
         ];
         $this->assertNotEquals($item->title, $data['title']);
         //$item->fresh();
-        $response = $this->put('pizzas/'.$item->id, $data);
+        $response = $this->put('/api/v1/pizzas/'.$item->id, $data);
         $response->assertStatus(200);
     }
 }

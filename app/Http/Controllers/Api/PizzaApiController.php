@@ -85,7 +85,9 @@ class PizzaApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $pizza = Pizzas::findOrFail($id);
+       $pizza->update($request->all());
+       return new PizzaApiResource($pizza);
     }
 
     /**
