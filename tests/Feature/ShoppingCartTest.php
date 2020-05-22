@@ -99,4 +99,19 @@ class ShoppingCartTest extends TestCase
         $response = $this->delete(route('pizzas.api.delete',$item->id),$data);
         $response->assertStatus(200);
     }
+    /**
+     * @test
+     */
+    public function test_that_a_single_pizza_item_can_be_shown()
+    {
+        $this->withoutExceptionHandling();
+        $data = factory(Pizzas::class)->create();
+        $response = $this->get(route('pizzas.api.show',$data->id),[
+            'title'=>$data->title,
+            'description'=>$data->descreption,
+            'price'=>$data->price,
+            'avartar'=>$data->avartar
+        ]);
+        $response->assertOk();
+    }
 }

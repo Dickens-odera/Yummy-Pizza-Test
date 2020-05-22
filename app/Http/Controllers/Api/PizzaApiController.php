@@ -45,6 +45,7 @@ class PizzaApiController extends Controller
     public function store(Request $request)
     {
         $items = array(
+            //'id'=>$request->id,
             'title'=>$request->title,
             'description'=>$request->description,
             'price'=>$request->price,
@@ -62,7 +63,8 @@ class PizzaApiController extends Controller
      */
     public function show($id)
     {
-        //
+        $pizza = Pizzas::findOrFail($id);
+        return new PizzaApiResource($pizza);
     }
 
     /**
