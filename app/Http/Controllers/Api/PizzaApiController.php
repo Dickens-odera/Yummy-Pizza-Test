@@ -98,6 +98,8 @@ class PizzaApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pizza = Pizzas::findOrFail($id);
+        $pizza->delete();
+        return response()->json('Record Successfuly Deleted');
     }
 }

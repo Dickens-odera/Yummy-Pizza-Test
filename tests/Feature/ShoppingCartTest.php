@@ -80,4 +80,23 @@ class ShoppingCartTest extends TestCase
         $response = $this->put(route('pizzas.api.update', $item->id), $data);
         $response->assertStatus(200);
     }
+    /**
+     * @test
+     */
+    public function test_that_a_pizza_item_can_be_deleted()
+    {
+        $this->withoutExceptionHandling();
+        $item = factory(Pizzas::class)->create();
+        $this->assertInstanceOf(Pizzas::class, $item);
+
+        $pizza_item = factory(Pizzas::class)->make();
+        $data = array(
+            'title'=>$pizza_item->title,
+            'description'=>$pizza_item->description,
+            'price'=>$pizza_item->price,
+            'avatar'=>$pizza_item->avartar
+        );
+        $response = $this->delete(route('pizzas.api.delete',$item->id),$data);
+        $response->assertStatus(200);
+    }
 }
