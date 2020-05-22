@@ -29,7 +29,7 @@ class ShoppingCartTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $data = factory(Pizzas::class)->make();
-        $response = $this->get(route('pizzas.all'),array(
+        $response = $this->get(route('pizzas.api.all'),array(
             'title'=>$data->title,
             'description'=>$data->description,
             'price'=>$data->price,
@@ -67,7 +67,7 @@ class ShoppingCartTest extends TestCase
             'title'=>'test',
             'description'=>'test desc',
             'price'=>1000,
-            'avartar'=>UploadedFile::fake()->image('pizza2.jpg',200,200)
+            'avartar'=>'test image'
         ]);
         $data = [
             'title'=>$temp_data->title,
@@ -77,7 +77,7 @@ class ShoppingCartTest extends TestCase
         ];
         $this->assertNotEquals($item->title, $data['title']);
         //$item->fresh();
-        $response = $this->put('/api/v1/pizzas/'.$item->id, $data);
+        $response = $this->put(route('pizzas.api.update', $item->id), $data);
         $response->assertStatus(200);
     }
 }
