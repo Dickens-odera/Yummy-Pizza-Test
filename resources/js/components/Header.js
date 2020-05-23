@@ -1,33 +1,13 @@
-import React, { Component } from 'react';
-import ReactDom from 'react-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-class Header extends Component{
-    constructor(props){
-        super(props);
-    }
-    componentDidMount(){
+const Header = () => (
+  <nav className='navbar navbar-expand-md navbar-dark'>
+    <div className='container'>
+      <Link className='navbar-brand' to='/'>Yummy Pizza Store</Link>
+      <Link className="" to="/">  <i className="material-icons">shopping_cart</i></Link>
+    </div>
+  </nav>
+)
 
-    }
-    render(){
-        return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-12">
-                    <nav>
-                        <div class="nav-wrapper">
-                        <a href="#" class="brand-logo">Yummy Pizza</a>
-                        <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a href="sass.html">Home</a></li>
-                            <li><a href="badges.html">Login</a></li>
-                            <li><a href="collapsible.html">Sign Up</a></li>
-                        </ul>
-                        </div>
-                    </nav>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
-
-export default Header;
+export default Header

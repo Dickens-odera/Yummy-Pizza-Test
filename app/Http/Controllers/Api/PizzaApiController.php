@@ -7,7 +7,9 @@ use App\Http\Resources\PizzaApiResource;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostApiResource;
 use App\Pizzas;
-
+use GuzzleHttp\Client;
+use Intervention\Image;
+use Illuminate\Support\Str;
 class PizzaApiController extends Controller
 {
     public $pizzas;
@@ -44,12 +46,21 @@ class PizzaApiController extends Controller
      */
     public function store(Request $request)
     {
+        $avartar = $request->file('avartar');
+        $ext = $avartar->getClientOriginalExtension();
+        $saved_admin_photo_name = time().Str::random(40).".".$ext;
+        $path = public_path('uploads/'.$saved_admin_photo_name);
+        Image::make($avartar->getRealPath())->resize(250, 200, function($constraint)
+                {   
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->save($path);
         $items = array(
             //'id'=>$request->id,
             'title'=>$request->title,
             'description'=>$request->description,
             'price'=>$request->price,
-            'avartar'=>$request->avartar
+            'avartar'=>$saved_admin_photo_name
         );
         $this->pizzas->create($items);
         return new PizzaApiResource($items);
