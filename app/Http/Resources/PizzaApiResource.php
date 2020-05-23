@@ -19,7 +19,8 @@ class PizzaApiResource extends JsonResource
             'id'=>$this->id,
             'title'=>$this->title,
             'description'=>$this->description,
-            'avartar'=>$this->avartar
+            'avartar'=>$this->avartar,
+            'price'=>$this->price
         );
     }
     public function with($request)

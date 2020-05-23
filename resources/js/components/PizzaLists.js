@@ -19,9 +19,10 @@ class PizzaLists extends Component{
         .then(response => {
             return response.json();
         })
-        .then(products => {
+        .then(items => {
             //Fetched product is stored in the state
-            this.setState({ pizzas:products.data });
+            //console.log(products.data);
+            this.setState({ pizzas:items.data });
         });
     }
     listPizzas(){

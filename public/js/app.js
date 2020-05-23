@@ -69981,10 +69981,11 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
       //this.listPizzas() 
       fetch('http://localhost:8000/api/v1/pizzas').then(function (response) {
         return response.json();
-      }).then(function (products) {
+      }).then(function (items) {
         //Fetched product is stored in the state
+        //console.log(products.data);
         _this2.setState({
-          pizzas: products.data
+          pizzas: items.data
         });
       });
     }
