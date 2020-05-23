@@ -56,7 +56,7 @@ class PizzaLists extends Component{
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>Price</th>
-                                    <th>Action</th>
+                                    <th>Add to Cart</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,7 +68,7 @@ class PizzaLists extends Component{
                                             <td>{item.title}</td>
                                             <td>{item.description}</td>
                                             <td>{item.price}</td>
-                                            <td> <i className="material-icons">add_shopping_cart</i></td>
+                                            <td><button className="btn btn-success btn-sm"> <i className="material-icons">add_shopping_cart</i></button></td>
                                         </tr>
                             )}
                             </tbody>
