@@ -14,26 +14,17 @@ class PizzaLists extends Component{
 
     componentDidMount()
     {
-        //this.listPizzas() 
-        fetch('http://localhost:8000/api/v1/pizzas')
+      this.listPizzas();
+    }
+    listPizzas(){
+      fetch('http://localhost:8000/api/v1/pizzas')
         .then(response => {
             return response.json();
         })
         .then(items => {
-            //Fetched product is stored in the state
             //console.log(products.data);
             this.setState({ pizzas:items.data });
         });
-    }
-    listPizzas(){
-        axios.get('http://localhost:8000/api/v1/pizzas')
-        .then(res =>{
-            this.setState({pizzas:res.data})
-            //console.log(res.data)
-        })
-        .catch(err =>{
-           console.log(err)
-        })
     }
     renderPizzas() {
       return this.state.pizzas.map(pizza => {

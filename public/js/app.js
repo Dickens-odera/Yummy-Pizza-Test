@@ -69976,13 +69976,16 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
   _createClass(PizzaLists, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.listPizzas();
+    }
+  }, {
+    key: "listPizzas",
+    value: function listPizzas() {
       var _this2 = this;
 
-      //this.listPizzas() 
       fetch('http://localhost:8000/api/v1/pizzas').then(function (response) {
         return response.json();
       }).then(function (items) {
-        //Fetched product is stored in the state
         //console.log(products.data);
         _this2.setState({
           pizzas: items.data
@@ -69990,23 +69993,9 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
-    key: "listPizzas",
-    value: function listPizzas() {
-      var _this3 = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://localhost:8000/api/v1/pizzas').then(function (res) {
-        _this3.setState({
-          pizzas: res.data
-        }); //console.log(res.data)
-
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    }
-  }, {
     key: "renderPizzas",
     value: function renderPizzas() {
-      var _this4 = this;
+      var _this3 = this;
 
       return this.state.pizzas.map(function (pizza) {
         return (
@@ -70014,7 +70003,7 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
           //this.handleClick() method is invoked onClick.
           react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             onClick: function onClick() {
-              return _this4.handleClick(pizza);
+              return _this3.handleClick(pizza);
             },
             key: pizza.id
           }, pizza.title)
