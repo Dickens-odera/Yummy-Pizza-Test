@@ -49,7 +49,7 @@ class PizzaApiController extends Controller
         $pizza = new Pizzas;
         $pizza->title = $request->title;
         $pizza->description = $request->description;
-        $pizza->price = $request->prize;
+        $pizza->price = $request->price;
         $pizza->avartar = $request->avartar;
         $pizza->save();
         return new PizzaApiResource($pizza);
