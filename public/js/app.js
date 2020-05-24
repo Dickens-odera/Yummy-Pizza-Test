@@ -69869,6 +69869,10 @@ var App = /*#__PURE__*/function (_Component) {
         exact: true,
         path: "/",
         component: _PizzaLists__WEBPACK_IMPORTED_MODULE_4__["default"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
+        path: "cart",
+        component: _Header__WEBPACK_IMPORTED_MODULE_3__["default"]
       }))));
     }
   }]);
@@ -69897,16 +69901,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var Header = function Header() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-    className: "navbar navbar-expand-md navbar-dark"
+    className: "navbar navbar-expand-md navbar-inverse"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "navbar-brand",
     to: "/"
   }, "Yummy Pizza Store"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "",
-    to: "/"
-  }, "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "navbar-nav",
+    to: "/cart"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "material-icons"
   }, "shopping_cart"))));
 };
@@ -69967,9 +69971,13 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      pizzas: []
+      pizzas: [],
+      counter: 0
     };
     _this.listPizzas = _this.listPizzas.bind(_assertThisInitialized(_this));
+    _this.addToCart = _this.addToCart.bind(_assertThisInitialized(_this));
+    _this.increaseCounter = _this.increaseCounter.bind(_assertThisInitialized(_this));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -69986,7 +69994,6 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
       fetch('http://localhost:8000/api/v1/pizzas').then(function (response) {
         return response.json();
       }).then(function (items) {
-        //console.log(products.data);
         _this2.setState({
           pizzas: items.data
         });
@@ -70011,8 +70018,27 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "addToCart",
+    value: function addToCart() {
+      //this.setState({counter:this. increaseCounter})
+      //console.log(this.props.title)
+      this.increaseCounter();
+    }
+  }, {
+    key: "increaseCounter",
+    value: function increaseCounter() {
+      var _counter = this.state.counter += 1;
+
+      console.log(_counter); //this.setState({counter:_counter})
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick() {}
+  }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       var pizzas = this.state.pizzas;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container-fluid py-4"
@@ -70035,7 +70061,8 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: item.avartar
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-success btn-sm"
+          className: "btn btn-success btn-sm",
+          onClick: _this4.addToCart
         }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "material-icons"
         }, "add_shopping_cart"))));

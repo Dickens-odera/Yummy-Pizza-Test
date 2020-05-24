@@ -8,8 +8,12 @@ class PizzaLists extends Component{
         super(props)
         this.state = {
             pizzas : [],
+            counter:0,
         }
         this.listPizzas = this.listPizzas.bind(this)
+        this.addToCart =  this.addToCart.bind(this)
+        this.increaseCounter = this.increaseCounter.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     componentDidMount()
@@ -22,7 +26,6 @@ class PizzaLists extends Component{
             return response.json();
         })
         .then(items => {
-            //console.log(products.data);
             this.setState({ pizzas:items.data });
         });
     }
@@ -37,7 +40,20 @@ class PizzaLists extends Component{
           );
       })
     }
-
+     addToCart(){
+      //this.setState({counter:this. increaseCounter})
+      //console.log(this.props.title)
+      this.increaseCounter()
+    }
+    increaseCounter()
+    {
+      const _counter = this.state.counter += 1
+      console.log(_counter)
+      //this.setState({counter:_counter})
+    }
+    handleClick(){
+      
+    }
     render(){
         const { pizzas } = this.state
         return (
@@ -68,7 +84,7 @@ class PizzaLists extends Component{
                                             <td>{item.title}</td>
                                             <td>{item.description}</td>
                                             <td>{item.price}</td>
-                                            <td><button className="btn btn-success btn-sm"> <i className="material-icons">add_shopping_cart</i></button></td>
+                                            <td><button className="btn btn-success btn-sm" onClick={this.addToCart}> <i className="material-icons">add_shopping_cart</i></button></td>
                                         </tr>
                             )}
                             </tbody>
