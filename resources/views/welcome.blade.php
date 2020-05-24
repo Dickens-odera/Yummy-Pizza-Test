@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
             
-        <title>Yummy Pizza</title>
+        <title>Yummy Pizza Store</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -28,7 +28,7 @@
 
     </head>
     <body>
-       <div id="example"></div>
+       <div id="app"></div>
        <script src="{{ asset('js/app.js') }}"></script>
 
       <!--JavaScript at end of body for optimized loading-->

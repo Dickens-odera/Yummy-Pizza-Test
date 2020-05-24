@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
-
 
 class PizzaLists extends Component{
     constructor(props){
         super(props)
         this.state = {
             pizzas : [],
-            counter:0,
+            qty:0,
+            total:0
         }
         this.listPizzas = this.listPizzas.bind(this)
         this.addToCart =  this.addToCart.bind(this)
         this.increaseCounter = this.increaseCounter.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.calculateTotal = this.calculateTotal.bind(this)
     }
 
     componentDidMount()
@@ -41,9 +40,9 @@ class PizzaLists extends Component{
       })
     }
      addToCart(){
-      //this.setState({counter:this. increaseCounter})
-      //console.log(this.props.title)
-      this.increaseCounter()
+        this.setState({qty:this.state.qty + 1})
+        //console.log(this.state.qty)
+        this.props.handleTotal(this.props.price)
     }
     increaseCounter()
     {
@@ -54,12 +53,16 @@ class PizzaLists extends Component{
     handleClick(){
       
     }
+    calculateTotal(price){
+      this.setState({total:this.state.total + price})
+      console.log(this.state.total);
+    }
     render(){
         const { pizzas } = this.state
         return (
             <div className='container-fluid py-4'>
               <div className='row justify-content-center'>
-                <div className='col-md-12'>
+                <div className='col-md-8'>
                   <div className='card primary'>
                     <div className='card-header text-center text-uppercase'>Pizza Menu</div>
                     <div className='card-body'>
@@ -76,16 +79,16 @@ class PizzaLists extends Component{
                                 </tr>
                             </thead>
                             <tbody>
-                            {this.state.pizzas.map(
+                            {pizzas.map(
                                     item =>
                                         <tr id={item.id} key={item.id}>
                                             <td>{item.id}</td>
                                             <td><img src={item.avartar}></img></td>
                                             <td>{item.title}</td>
                                             <td>{item.description}</td>
-                                            <td>{item.price}</td>
-                                            <td><button className="btn btn-success btn-sm" onClick={this.addToCart}> <i className="material-icons">add_shopping_cart</i></button></td>
-                                        </tr>
+                                            <td>$ {item.price}</td>
+                                            <button onClick={this.addToCart}  className="btn btn-sm btn-success"> <i className="material-icons">add_shopping_cart</i></button>
+                                            </tr>
                             )}
                             </tbody>
                         </table>
@@ -93,10 +96,23 @@ class PizzaLists extends Component{
                     </div>
                   </div>
                 </div>
+                <div className="col-md-4">
+                      <div className="card">
+                              <div className="card-header">My Cart</div>
+                              <div className="card-body">
+                              <button className="btn btn-sm btn-success">
+                                  <i className="material-icons"
+                                  total={this.state.qty}>shopping_cart</i>
+                                  {this.state.qty}
+                              </button><br></br> <br></br>
+                              Total: $ {this.total}
+
+                              </div>
+                      </div>
+                </div>
               </div>
             </div>
           )
     }
 }
-
 export default PizzaLists

@@ -8,9 +8,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Header />
+          <Header/>
           <Switch>
                 <Route exact path='/' component={PizzaLists} />
+                <Route exact path='cart' component={Header}/>
               </Switch>
         </div>
       </BrowserRouter>
@@ -18,4 +19,4 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('example'))
+ReactDOM.render(<App />, document.getElementById('app'))
