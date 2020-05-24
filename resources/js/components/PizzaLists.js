@@ -20,7 +20,7 @@ class PizzaLists extends Component{
       this.listPizzas();
     }
     listPizzas(){
-      fetch('http://localhost:8000/api/v1/pizzas')
+      fetch('http://localhost:8000/api/v1/pizzas/list')
         .then(response => {
             return response.json();
         })

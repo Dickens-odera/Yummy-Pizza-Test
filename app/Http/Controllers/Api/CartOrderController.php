@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\CartOrders;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PizzaApiResource;
 use App\Http\Resources\PizzaOrderResource;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class CartOrderController extends Controller
      */
     public function index()
     {
-        //
+        return PizzaOrderResource::collection(CartOrders::all());
     }
 
     /**
@@ -55,7 +56,8 @@ class CartOrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $cartOrders = CartOrders::findOrFail($id);
+        return new PizzaOrderResource($cartOrders);
     }
 
     /**
@@ -89,6 +91,10 @@ class CartOrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cartOrder = CartOrders::findOrFail($id);
+        $cartOrder->delete();
+        //return  new PizzaOrderResource($cartOrder);
+        return response()->json("Order item successfully delete");
+
     }
 }

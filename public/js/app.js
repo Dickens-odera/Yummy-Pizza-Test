@@ -69988,7 +69988,7 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
     value: function listPizzas() {
       var _this2 = this;
 
-      fetch('http://localhost:8000/api/v1/pizzas').then(function (response) {
+      fetch('http://localhost:8000/api/v1/pizzas/list').then(function (response) {
         return response.json();
       }).then(function (items) {
         _this2.setState({
