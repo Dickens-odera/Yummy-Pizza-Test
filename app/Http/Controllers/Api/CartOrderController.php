@@ -80,7 +80,9 @@ class CartOrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cartOrder = CartOrders::findOrFail($id);
+        $cartOrder->update($request->only('name','email','location','phone'));
+        return new PizzaOrderResource($cartOrder);
     }
 
     /**

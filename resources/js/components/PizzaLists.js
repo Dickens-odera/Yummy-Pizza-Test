@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+//import image from '../'
 class PizzaLists extends Component{
     constructor(props){
         super(props)
@@ -83,7 +83,7 @@ class PizzaLists extends Component{
                                     item =>
                                         <tr id={item.id} key={item.id}>
                                             <td>{item.id}</td>
-                                            <td><img src={item.avartar}></img></td>
+                                            <td><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="pizza"></img></td>
                                             <td>{item.title}</td>
                                             <td>{item.description}</td>
                                             <td>$ {item.price}</td>

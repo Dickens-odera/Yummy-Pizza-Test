@@ -81,6 +81,25 @@ class CartOrderTest extends TestCase
      * 
      * @return void
      */
+    public function test_that_an_order_item_can_be_updated()
+    {
+        $this->withoutExceptionHandling();
+        $order_item = factory(CartOrders::class)->create();
+        $data = array(
+            'name'=>$order_item->name,
+            'email'=>$order_item->email,
+            'address'=>$order_item->address,
+            'location'=>$order_item->location,
+            'phone'=>$order_item->phone
+        );
+        $response = $this->put(route('orders.api.update',$order_item->id),$data);
+        $response->assertStatus(200);
+    }
+    /**
+     * @test
+     * 
+     * @return void
+     */
     public function test_that_an_order_item_can_be_deleted()
     {
         $this->withoutExceptionHandling();

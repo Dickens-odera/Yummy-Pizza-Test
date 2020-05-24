@@ -32,5 +32,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'api'], function()
         Route::get('list','Api\CartOrderController@index')->name('orders.api.list');
         Route::get('show/{id}','Api\CartOrderController@show')->name('orders.api.show');
         Route::delete('delete/{id}','Api\CartOrderController@destroy')->name('orders.api.delete');
+        Route::put('update/{id}','Api\CartOrderController@update')->name('orders.api.update');
     });
 });
