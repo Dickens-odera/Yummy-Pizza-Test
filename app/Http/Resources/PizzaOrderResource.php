@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PizzaApiResource extends JsonResource
+class PizzaOrderResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,11 @@ class PizzaApiResource extends JsonResource
     {
         return array(
             'id'=>$this->id,
-            'title'=>$this->title,
-            'description'=>$this->description,
-            'price'=>$this->price,
-            'avartar'=>$this->avartar,
+            'name'=>$this->name,
+            'email'=>$this->email,
+            'location'=>$this->location,
+            'address'=>$this->address,
+            'phone'=>$this->phone
         );
     }
     public function with($request)

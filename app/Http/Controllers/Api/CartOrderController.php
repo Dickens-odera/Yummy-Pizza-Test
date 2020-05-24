@@ -2,22 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\CartOrders;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PizzaApiResource;
+use App\Http\Resources\PizzaOrderResource;
 use Illuminate\Http\Request;
-use App\Http\Resources\PostApiResource;
-use App\Pizzas;
-use GuzzleHttp\Client;
-use Intervention\Image;
-use Illuminate\Support\Str;
-class PizzaApiController extends Controller
+
+class CartOrderController extends Controller
 {
-    public $pizzas;
-    public function __construct(Pizzas $pizzas)
-    {
-        $this->middleware('api');
-        $this->pizzas = $pizzas;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +16,7 @@ class PizzaApiController extends Controller
      */
     public function index()
     {
-        return PizzaApiResource::collection($this->pizzas->all());
+        //
     }
 
     /**
@@ -46,13 +37,14 @@ class PizzaApiController extends Controller
      */
     public function store(Request $request)
     {
-        $pizza = new Pizzas;
-        $pizza->title = $request->title;
-        $pizza->description = $request->description;
-        $pizza->price = $request->prize;
-        $pizza->avartar = $request->avartar;
-        $pizza->save();
-        return new PizzaApiResource($pizza);
+        $pizza_order = new CartOrders;
+        $pizza_order->name = $request->name;
+        $pizza_order->email = $request->email;
+        $pizza_order->address = $request->address;
+        $pizza_order->location = $request->location;
+        $pizza_order->phone = $request->phone;
+        $pizza_order->save();
+        return new PizzaOrderResource($pizza_order);
     }
 
     /**
@@ -63,8 +55,7 @@ class PizzaApiController extends Controller
      */
     public function show($id)
     {
-        $pizza = Pizzas::findOrFail($id);
-        return new PizzaApiResource($pizza);
+        //
     }
 
     /**
@@ -87,9 +78,7 @@ class PizzaApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $pizza = Pizzas::findOrFail($id);
-       $pizza->update($request->all());
-       return new PizzaApiResource($pizza);
+        //
     }
 
     /**
@@ -100,8 +89,6 @@ class PizzaApiController extends Controller
      */
     public function destroy($id)
     {
-        $pizza = Pizzas::findOrFail($id);
-        $pizza->delete();
-        return response()->json('Record Successfuly Deleted');
+        //
     }
 }

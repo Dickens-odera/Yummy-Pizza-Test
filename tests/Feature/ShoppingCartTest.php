@@ -51,7 +51,7 @@ class ShoppingCartTest extends TestCase
             'avartar'=>$items->avartar
         ]);
 
-        $response->assertOk();
+        $response->assertStatus(201);
         $this->assertCount(1, Pizzas::all());
     }
     /**

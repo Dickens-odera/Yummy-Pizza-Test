@@ -24,4 +24,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'api'], function()
     Route::put('pizzas/{id}','Api\PizzaApiController@update')->name('pizzas.api.update');
     Route::delete('pizzas/{id}','Api\PizzaApiController@destroy')->name('pizzas.api.delete');
     Route::get('pizza/{id}','Api\PizzaApiController@show')->name('pizzas.api.show');
+
+    Route::post('orders','Api\CartOrderController@store')->name('orders.api.add');
 });
