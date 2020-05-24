@@ -6,13 +6,15 @@ class PizzaLists extends Component{
         this.state = {
             pizzas : [],
             qty:0,
-            total:0
+            total:0,
+            checkout:[],
         }
         this.listPizzas = this.listPizzas.bind(this)
         this.addToCart =  this.addToCart.bind(this)
         this.increaseCounter = this.increaseCounter.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.calculateTotal = this.calculateTotal.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
 
     componentDidMount()
@@ -56,6 +58,22 @@ class PizzaLists extends Component{
     calculateTotal(price){
       this.setState({total:this.state.total + price})
       console.log(this.state.total);
+    }
+    onSubmit(event){
+      event.preventDefault();
+      fetch('http://localhost:8000/api/v1/orders/add',{
+        method:'post',
+        headers:'application/json'
+      })
+        .then(res =>{
+            res.json()
+        })
+        .then(items =>{
+            this.setState({checkout:items.data})
+        })
+        .catch(err =>{
+            console.log(err)
+        })
     }
     render(){
         const { pizzas } = this.state
@@ -105,8 +123,7 @@ class PizzaLists extends Component{
                                   total={this.state.qty}>shopping_cart</i>
                                   {this.state.qty}
                               </button><br></br> <br></br>
-                              Total: $ {this.total}
-
+                              Total: $ {this.state.total}
                               </div>
                       </div>
                 </div>

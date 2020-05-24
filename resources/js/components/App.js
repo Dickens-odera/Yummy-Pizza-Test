@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Header from './Header'
 import PizzaLists from './PizzaLists'
+import Order from './Order'
 class App extends Component {
   render () {
     return (
       <BrowserRouter>
         <div>
-          <Header/>
+          <Header />
           <Switch>
                 <Route exact path='/' component={PizzaLists} />
-                <Route exact path='cart' component={Header}/>
-              </Switch>
+                <Route exact path='/checkout' component={Order}/>
+          </Switch>
         </div>
       </BrowserRouter>
     )
