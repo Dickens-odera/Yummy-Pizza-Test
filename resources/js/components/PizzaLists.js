@@ -1,5 +1,31 @@
 import React, { Component } from 'react'
 //import image from '../'
+class PizzaItem extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      qty:0,
+      total:0
+    }
+  }
+    render(){
+      return(
+        <div className="col-md-4">
+        <div className="card">
+                <div className="card-header">My Cart</div>
+                <div className="card-body">
+                <button className="btn btn-sm btn-success">
+                    <i className="material-icons"
+                    total={this.state.qty}>shopping_cart</i>
+                    {this.state.qty}
+                </button><br></br> <br></br>
+                Total: $ {this.state.total}
+                </div>
+        </div>
+  </div>
+      )
+    }
+}
 class PizzaLists extends Component{
     constructor(props){
         super(props)
@@ -7,14 +33,13 @@ class PizzaLists extends Component{
             pizzas : [],
             qty:0,
             total:0,
-            checkout:[],
+            currentItem:null,
         }
         this.listPizzas = this.listPizzas.bind(this)
         this.addToCart =  this.addToCart.bind(this)
         this.increaseCounter = this.increaseCounter.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.calculateTotal = this.calculateTotal.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
     }
 
     componentDidMount()
@@ -52,28 +77,12 @@ class PizzaLists extends Component{
       console.log(_counter)
       //this.setState({counter:_counter})
     }
-    handleClick(){
-      
+    handleClick(item){
+      this.setState({currentItem:item})
     }
     calculateTotal(price){
       this.setState({total:this.state.total + price})
       console.log(this.state.total);
-    }
-    onSubmit(event){
-      event.preventDefault();
-      fetch('http://localhost:8000/api/v1/orders/add',{
-        method:'post',
-        headers:'application/json'
-      })
-        .then(res =>{
-            res.json()
-        })
-        .then(items =>{
-            this.setState({checkout:items.data})
-        })
-        .catch(err =>{
-            console.log(err)
-        })
     }
     render(){
         const { pizzas } = this.state
@@ -114,19 +123,8 @@ class PizzaLists extends Component{
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4">
-                      <div className="card">
-                              <div className="card-header">My Cart</div>
-                              <div className="card-body">
-                              <button className="btn btn-sm btn-success">
-                                  <i className="material-icons"
-                                  total={this.state.qty}>shopping_cart</i>
-                                  {this.state.qty}
-                              </button><br></br> <br></br>
-                              Total: $ {this.state.total}
-                              </div>
-                      </div>
-                </div>
+                <PizzaItem selectedPizza={this.state.currentItem}>
+                </PizzaItem>
               </div>
             </div>
           )

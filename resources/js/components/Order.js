@@ -4,27 +4,54 @@ class Order extends Component{
     constructor(props){
         super(props);
         this.state = {
-            newOrder:{
-                name:'',
-                email:'',
-                address:'',
-                location:'',
-                phone:'',
-            }
+            name:'',
+            email:'',
+            address:'',
+            location:'',
+            phone:''
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
         this.onChange = this.onChange.bind(this)
     }
     componentDidMount(){
 
     }
-    onChange(){
-        this.setState({[newOrder.name.target]:this.target.value})
+    onChange(e){
+        this.setState({[e.target.name]:e.target.value})
     }
-    handleSubmit(event){
-        event.preventDefault()
-    }
-
+    onSubmit(event){
+            event.preventDefault();
+            fetch('http://localhost:8000/api/v1/orders/add',{
+              method:'post',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                name:this.state.name,
+                email:this.state.email,
+                address:this.state.address,
+                location:this.state.location,
+                phone:this.state.phone
+            })
+            })
+              .then(res =>{
+                  res.json()
+              })
+              .then(items =>{
+                  this.setState({
+                    name:'',
+                    email:'',
+                    address:'',
+                    location:'',
+                    phone:''
+                  })
+                  alert('Order sent successfully')
+              })
+              .catch(err =>{
+                  console.log(err)
+              })
+          }
 render(){
     return(
         <div className="container">
@@ -37,31 +64,41 @@ render(){
                         <div className="form-group row">
                         <label className="form-label col-md-4 text-md-right">Name</label>
                         <div className="col-md-8">
-                            <input className="form-control" name="name"></input>
+                            <input className="form-control" name="name"
+                            value={this.state.name}
+                            onChange={this.onChange.bind(this)}></input>
                         </div>
                         </div>
                         <div className="form-group row">
                         <label className="form-label col-md-4 text-md-right">Email</label>
                         <div className="col-md-8">
-                            <input className="form-control" name="email" type="email"></input>
+                            <input className="form-control" name="email" type="email"
+                            value={this.state.email}
+                            onChange={this.onChange.bind(this)}></input>
                         </div>
                         </div>
                         <div className="form-group row">
                         <label className="form-label col-md-4 text-md-right">Address</label>
                         <div className="col-md-8">
-                            <input className="form-control" name="address"></input>
+                            <input className="form-control" name="address"
+                            value={this.state.address}
+                            onChange={this.onChange.bind(this)}></input>
                         </div>
                         </div>
                         <div className="form-group row">
                         <label className="form-label col-md-4 text-md-right">Location</label>
                         <div className="col-md-8">
-                            <input className="form-control" name="location"></input>
+                            <input className="form-control" name="location"
+                            value={this.state.location}
+                            onChange={this.onChange.bind(this)}></input>
                         </div>
                         </div>
                         <div className="form-group row">
                         <label className="form-label col-md-4 text-md-right">Phone</label>
                         <div className="col-md-8">
-                            <input className="form-control" name="phone"></input>
+                            <input className="form-control" name="phone"
+                            value={this.state.phone}
+                            onChange={this.onChange.bind(this)}></input>
                         </div>
                         </div>
                         <div className="form-group row">

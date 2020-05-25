@@ -69874,7 +69874,8 @@ var App = /*#__PURE__*/function (_Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/checkout",
-        component: _Order__WEBPACK_IMPORTED_MODULE_5__["default"]
+        component: _Order__WEBPACK_IMPORTED_MODULE_5__["default"],
+        Checkout: true
       }))));
     }
   }]);
@@ -69972,15 +69973,13 @@ var Order = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      newOrder: {
-        name: '',
-        email: '',
-        address: '',
-        location: '',
-        phone: ''
-      }
+      name: '',
+      email: '',
+      address: '',
+      location: '',
+      phone: ''
     };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_this));
     _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -69990,13 +69989,43 @@ var Order = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {}
   }, {
     key: "onChange",
-    value: function onChange() {
-      this.setState(_defineProperty({}, newOrder.name.target, this.target.value));
+    value: function onChange(e) {
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
     }
   }, {
-    key: "handleSubmit",
-    value: function handleSubmit(event) {
+    key: "onSubmit",
+    value: function onSubmit(event) {
+      var _this2 = this;
+
       event.preventDefault();
+      fetch('http://localhost:8000/api/v1/orders/add', {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: this.state.name,
+          email: this.state.email,
+          address: this.state.address,
+          location: this.state.location,
+          phone: this.state.phone
+        })
+      }).then(function (res) {
+        res.json();
+      }).then(function (items) {
+        _this2.setState({
+          name: '',
+          email: '',
+          address: '',
+          location: '',
+          phone: ''
+        });
+
+        alert('Order sent successfully');
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }, {
     key: "render",
@@ -70023,7 +70052,9 @@ var Order = /*#__PURE__*/function (_Component) {
         className: "col-md-8"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
-        name: "name"
+        name: "name",
+        value: this.state.name,
+        onChange: this.onChange.bind(this)
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -70033,7 +70064,9 @@ var Order = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
         name: "email",
-        type: "email"
+        type: "email",
+        value: this.state.email,
+        onChange: this.onChange.bind(this)
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -70042,7 +70075,9 @@ var Order = /*#__PURE__*/function (_Component) {
         className: "col-md-8"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
-        name: "address"
+        name: "address",
+        value: this.state.address,
+        onChange: this.onChange.bind(this)
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -70051,7 +70086,9 @@ var Order = /*#__PURE__*/function (_Component) {
         className: "col-md-8"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
-        name: "location"
+        name: "location",
+        value: this.state.location,
+        onChange: this.onChange.bind(this)
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -70060,7 +70097,9 @@ var Order = /*#__PURE__*/function (_Component) {
         className: "col-md-8"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
-        name: "phone"
+        name: "phone",
+        value: this.state.phone,
+        onChange: this.onChange.bind(this)
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -70117,30 +70156,70 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
  //import image from '../'
 
-var PizzaLists = /*#__PURE__*/function (_Component) {
-  _inherits(PizzaLists, _Component);
+var PizzaItem = /*#__PURE__*/function (_Component) {
+  _inherits(PizzaItem, _Component);
 
-  var _super = _createSuper(PizzaLists);
+  var _super = _createSuper(PizzaItem);
 
-  function PizzaLists(props) {
+  function PizzaItem(props) {
     var _this;
 
-    _classCallCheck(this, PizzaLists);
+    _classCallCheck(this, PizzaItem);
 
     _this = _super.call(this, props);
     _this.state = {
+      qty: 0,
+      total: 0
+    };
+    return _this;
+  }
+
+  _createClass(PizzaItem, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-header"
+      }, "My Cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-sm btn-success"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "material-icons",
+        total: this.state.qty
+      }, "shopping_cart"), this.state.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Total: $ ", this.state.total)));
+    }
+  }]);
+
+  return PizzaItem;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+var PizzaLists = /*#__PURE__*/function (_Component2) {
+  _inherits(PizzaLists, _Component2);
+
+  var _super2 = _createSuper(PizzaLists);
+
+  function PizzaLists(props) {
+    var _this2;
+
+    _classCallCheck(this, PizzaLists);
+
+    _this2 = _super2.call(this, props);
+    _this2.state = {
       pizzas: [],
       qty: 0,
       total: 0,
-      checkout: []
+      currentItem: null
     };
-    _this.listPizzas = _this.listPizzas.bind(_assertThisInitialized(_this));
-    _this.addToCart = _this.addToCart.bind(_assertThisInitialized(_this));
-    _this.increaseCounter = _this.increaseCounter.bind(_assertThisInitialized(_this));
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
-    _this.calculateTotal = _this.calculateTotal.bind(_assertThisInitialized(_this));
-    _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_this));
-    return _this;
+    _this2.listPizzas = _this2.listPizzas.bind(_assertThisInitialized(_this2));
+    _this2.addToCart = _this2.addToCart.bind(_assertThisInitialized(_this2));
+    _this2.increaseCounter = _this2.increaseCounter.bind(_assertThisInitialized(_this2));
+    _this2.handleClick = _this2.handleClick.bind(_assertThisInitialized(_this2));
+    _this2.calculateTotal = _this2.calculateTotal.bind(_assertThisInitialized(_this2));
+    return _this2;
   }
 
   _createClass(PizzaLists, [{
@@ -70151,12 +70230,12 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
   }, {
     key: "listPizzas",
     value: function listPizzas() {
-      var _this2 = this;
+      var _this3 = this;
 
       fetch('http://localhost:8000/api/v1/pizzas/list').then(function (response) {
         return response.json();
       }).then(function (items) {
-        _this2.setState({
+        _this3.setState({
           pizzas: items.data
         });
       });
@@ -70164,7 +70243,7 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
   }, {
     key: "renderPizzas",
     value: function renderPizzas() {
-      var _this3 = this;
+      var _this4 = this;
 
       return this.state.pizzas.map(function (pizza) {
         return (
@@ -70172,7 +70251,7 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
           //this.handleClick() method is invoked onClick.
           react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             onClick: function onClick() {
-              return _this3.handleClick(pizza);
+              return _this4.handleClick(pizza);
             },
             key: pizza.id
           }, pizza.title)
@@ -70197,7 +70276,11 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "handleClick",
-    value: function handleClick() {}
+    value: function handleClick(item) {
+      this.setState({
+        currentItem: item
+      });
+    }
   }, {
     key: "calculateTotal",
     value: function calculateTotal(price) {
@@ -70205,25 +70288,6 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
         total: this.state.total + price
       });
       console.log(this.state.total);
-    }
-  }, {
-    key: "onSubmit",
-    value: function onSubmit(event) {
-      var _this4 = this;
-
-      event.preventDefault();
-      fetch('http://localhost:8000/api/v1/orders/add', {
-        method: 'post',
-        headers: 'application/json'
-      }).then(function (res) {
-        res.json();
-      }).then(function (items) {
-        _this4.setState({
-          checkout: items.data
-        });
-      })["catch"](function (err) {
-        console.log(err);
-      });
     }
   }, {
     key: "render",
@@ -70258,20 +70322,9 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
         }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "material-icons"
         }, "add_shopping_cart")));
-      }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-md-4"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-header"
-      }, "My Cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-sm btn-success"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "material-icons",
-        total: this.state.qty
-      }, "shopping_cart"), this.state.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Total: $ ", this.state.total)))));
+      }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PizzaItem, {
+        selectedPizza: this.state.currentItem
+      })));
     }
   }]);
 
