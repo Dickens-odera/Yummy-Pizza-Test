@@ -1,6 +1,8 @@
 # Yummy Pizza Test
 
-![''](/uploads/pizza1.png "Pizza")
+<!-- ![''](/uploads/pizza1.png "Pizza") -->
+<img src="public/uploads/pizza.png" alt="pizza" style="width:100%">
+
 
 ### Url
 <p>The aapplication can be found</p> 
