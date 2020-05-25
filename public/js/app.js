@@ -72173,31 +72173,16 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
         _this2.setState({
           pizzas: items.data
         });
-      });
-    }
-  }, {
-    key: "renderPizzas",
-    value: function renderPizzas() {
-      var _this3 = this;
 
-      return this.state.pizzas.map(function (pizza) {
-        return (
-          /*#__PURE__*/
-          //this.handleClick() method is invoked onClick.
-          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            onClick: function onClick() {
-              return _this3.handleClick(pizza);
-            },
-            key: pizza.id
-          }, pizza.title)
-        );
+        _this2.state.pizzas.push(items);
       });
     }
   }, {
     key: "addToCart",
     value: function addToCart(item) {
       this.setState({
-        qty: this.state.qty += 1
+        qty: this.state.qty += 1,
+        total: this.state.total + 10
       });
       console.log(this.state.qty);
     }
@@ -72220,8 +72205,7 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
     value: function calculateTotal(price) {
       this.setState({
         total: this.state.total + price
-      });
-      console.log(this.state.total);
+      }); //console.log(this.state.total);
     }
   }, {
     key: "handleAddToCart",
@@ -72234,7 +72218,7 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var pizzas = this.state.pizzas;
       var _width$height = {
@@ -72268,8 +72252,9 @@ var PizzaLists = /*#__PURE__*/function (_Component) {
           className: "img-thumbnail rounded-circle mx-auto mb-2 shadow-sm",
           style: imgStyle
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$ ", item.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: _this4.handleAddToCart,
-          className: "btn btn-sm btn-success"
+          onClick: _this3.handleAddToCart,
+          className: "btn btn-sm btn-success",
+          price: item.price
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "material-icons"
         }, "add_shopping_cart")));

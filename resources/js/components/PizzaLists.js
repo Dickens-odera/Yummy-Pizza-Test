@@ -9,6 +9,7 @@ class PizzaLists extends Component{
             qty:0,
             total:0,
             currentItem:null,
+            
         }
         this.listPizzas = this.listPizzas.bind(this)
         this.addToCart =  this.addToCart.bind(this)
@@ -30,21 +31,12 @@ class PizzaLists extends Component{
         })
         .then(items => {
             this.setState({ pizzas:items.data });
+            this.state.pizzas.push(items)
         });
     }
-    renderPizzas() {
-      return this.state.pizzas.map(pizza => {
-          return (
-              //this.handleClick() method is invoked onClick.
-              <li onClick={
-                  () =>this.handleClick(pizza)} key={pizza.id} >
-                  { pizza.title } 
-              </li>      
-          );
-      })
-    }
+
      addToCart(item){
-        this.setState({qty:this.state.qty += 1})
+        this.setState({qty:this.state.qty += 1, total:this.state.total + 10})
         console.log(this.state.qty)
     }
     increaseCounter()
@@ -58,13 +50,13 @@ class PizzaLists extends Component{
     }
     calculateTotal(price){
       this.setState({total:this.state.total + price})
-      console.log(this.state.total);
+      //console.log(this.state.total);
     }
     handleAddToCart(e){
       this.addToCart(this.item);
     }
     viewCart(items){
-      
+
     }
     render(){
         const { pizzas } = this.state
@@ -105,7 +97,8 @@ class PizzaLists extends Component{
                                             <td>{item.description}</td>
                                             <td>$ {item.price}</td>
                                             <button onClick={this.handleAddToCart}  
-                                                    className="btn btn-sm btn-success"> 
+                                                    className="btn btn-sm btn-success"
+                                                    price={item.price}> 
                                                     <i className="material-icons">add_shopping_cart</i>
                                                     </button>
                                             </tr>
