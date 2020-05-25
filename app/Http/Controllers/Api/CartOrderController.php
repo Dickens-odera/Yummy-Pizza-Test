@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class CartOrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['api']);
+    }
     /**
      * Display a listing of the resource.
      *
