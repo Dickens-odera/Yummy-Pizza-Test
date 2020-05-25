@@ -71979,10 +71979,9 @@ var Order = /*#__PURE__*/function (_Component) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-      }) //   .then(res =>{
-      //       res.json()
-      //   })
-      .then(function (items) {
+      }).then(function (res) {
+        res.json();
+      }).then(function (items) {
         _this2.setState({
           name: '',
           email: '',
