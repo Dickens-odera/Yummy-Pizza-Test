@@ -72197,7 +72197,6 @@ var PizzaLists = /*#__PURE__*/function (_Component2) {
     value: function listPizzas() {
       var _this3 = this;
 
-      //const uri = "https://yummy-pizza-store.herokuapp.com/"
       fetch('https:/yummy-pizza-store.herokuapp.com/api/v1/pizzas/list').then(function (response) {
         return response.json();
       }).then(function (items) {
