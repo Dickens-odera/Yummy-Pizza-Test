@@ -54,7 +54,7 @@ For the frontend scafolding run the following command:
 npm run watch
 
 ### Feature Testing
-Run the following command in your terminal and the applications path
+Run the following command in your terminal
 ```php
 ./vendor/bin/phpunit
 ```
