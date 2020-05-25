@@ -121,7 +121,7 @@ render(){
                         </div>
                         <div className="form-group row">
                         <Link className="btn btn-sm btn-primary mr-auto" to="/"><i className=""></i>Continue Shopping</Link>
-                        <button type="submit" className="btn btn-sm btn-primary ml-auto">Place Order</button>
+                        <button type="submit" className="btn btn-sm btn-primary">Place Order</button>
                         </div>
                 </form>
                 </div>

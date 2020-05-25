@@ -72079,7 +72079,7 @@ var Order = /*#__PURE__*/function (_Component) {
         className: ""
       }), "Continue Shopping"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
-        className: "btn btn-sm btn-primary ml-auto"
+        className: "btn btn-sm btn-primary"
       }, "Place Order"))))))));
     }
   }]);
