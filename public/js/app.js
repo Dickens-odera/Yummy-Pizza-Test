@@ -71958,24 +71958,7 @@ var Order = /*#__PURE__*/function (_Component) {
     value: function onSubmit(event) {
       var _this2 = this;
 
-      event.preventDefault(); // fetch('api/v1/orders/add',{
-      //   method:'post',
-      //   mode: 'cors', // no-cors, *cors, same-origin
-      //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      //   credentials: 'same-origin', // include, *same-origin, omit
-      //   headers: {
-      //     'Accept': 'application/json',
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     name:this.state.name,
-      //     email:this.state.email,
-      //     address:this.state.address,
-      //     location:this.state.location,
-      //     phone:this.state.phone
-      // })
-      // })
-
+      event.preventDefault();
       var data = {
         name: this.state.name,
         email: this.state.email,
@@ -71983,10 +71966,22 @@ var Order = /*#__PURE__*/function (_Component) {
         location: this.state.address,
         phone: this.state.phone
       };
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('api/v1/orders/add', data) //   .then(res =>{
-      //       //res.json()
-      //   })
-      .then(function (items) {
+      fetch('api/v1/orders/add', {
+        method: 'post',
+        mode: 'cors',
+        // no-cors, *cors, same-origin
+        cache: 'no-cache',
+        // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin',
+        // include, *same-origin, omit
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        res.json();
+      }).then(function (items) {
         _this2.setState({
           name: '',
           email: '',
@@ -71997,7 +71992,7 @@ var Order = /*#__PURE__*/function (_Component) {
 
         alert('Order sent successfully');
       })["catch"](function (err) {
-        console.log(err);
+        console.log(err.response);
       });
     }
   }, {

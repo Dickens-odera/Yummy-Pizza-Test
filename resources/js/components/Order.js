@@ -24,23 +24,6 @@ class Order extends Component{
     }
     onSubmit(event){
             event.preventDefault();
-            // fetch('api/v1/orders/add',{
-            //   method:'post',
-            //   mode: 'cors', // no-cors, *cors, same-origin
-            //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            //   credentials: 'same-origin', // include, *same-origin, omit
-            //   headers: {
-            //     'Accept': 'application/json',
-            //     'Content-Type': 'application/json'
-            //   },
-            //   body: JSON.stringify({
-            //     name:this.state.name,
-            //     email:this.state.email,
-            //     address:this.state.address,
-            //     location:this.state.location,
-            //     phone:this.state.phone
-            // })
-            // })
             const data ={
                 name:this.state.name,
                 email:this.state.email,
@@ -48,10 +31,20 @@ class Order extends Component{
                 location:this.state.address,
                 phone:this.state.phone
             }
-            axios.post('api/v1/orders/add',data)
-            //   .then(res =>{
-            //       //res.json()
-            //   })
+            fetch('api/v1/orders/add',{
+              method:'post',
+              mode: 'cors', // no-cors, *cors, same-origin
+              cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+              credentials: 'same-origin', // include, *same-origin, omit
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            })
+              .then(res =>{
+                  res.json()
+              })
               .then(items =>{
                   this.setState({
                     name:'',
@@ -63,7 +56,7 @@ class Order extends Component{
                   alert('Order sent successfully')
               })
               .catch(err =>{
-                  console.log(err)
+                  console.log(err.response)
               })
           }
 render(){
