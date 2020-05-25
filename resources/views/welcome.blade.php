@@ -29,8 +29,8 @@
     </head>
     <body>
        <div id="app"></div>
-       <script src="{{ asset('js/app.js') }}"></script>
-
+       <script src="js/app.js"></script>
+       {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
       <!--JavaScript at end of body for optimized loading-->
       {{-- <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script> --}}
 
