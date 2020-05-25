@@ -71980,7 +71980,17 @@ var Order = /*#__PURE__*/function (_Component) {
         },
         body: JSON.stringify(data)
       }).then(function (res) {
-        res.json();
+        //res.json()
+        if (res.status === 500) {
+          return res.json() // return the result of the inner promise, which is an error
+          .then(function (json) {
+            var message = json.message,
+                stackTrace = json.stackTrace;
+            throw new ServerException(message, stackTrace);
+          });
+        } else {
+          return res.json();
+        }
       }).then(function (items) {
         _this2.setState({
           name: '',
