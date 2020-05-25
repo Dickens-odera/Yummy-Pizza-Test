@@ -43,16 +43,7 @@ class Order extends Component{
               body: JSON.stringify(data)
             })
               .then(res =>{
-                  //res.json()
-                  if (res.status === 500) {
-                    return res.json() // return the result of the inner promise, which is an error
-                    .then((json) => {
-                      const { message, stackTrace } = json;
-                      throw new ServerException(message, stackTrace);
-                    });
-                  } else {
-                    return res.json();
-                  }
+                  res.json()
               })
               .then(items =>{
                   this.setState({
