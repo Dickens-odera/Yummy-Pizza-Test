@@ -38,8 +38,9 @@ return [
     | application. If disabled, a simple generic error page is shown.
     |
     */
-
+    'log'=>'errorlog',
     'debug' => (bool) env('APP_DEBUG', false),
+    
 
     /*
     |--------------------------------------------------------------------------

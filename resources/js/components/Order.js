@@ -24,7 +24,8 @@ class Order extends Component{
     }
     onSubmit(event){
             event.preventDefault();
-            fetch('http://localhost:8000/api/v1/orders/add',{
+            const uri = "https://yummy-pizza-store.herokuapp.com/"
+            fetch('https://yummy-pizza-store.herokuapp.com/api/v1/orders/add',{
               method:'post',
               headers: {
                 'Accept': 'application/json',

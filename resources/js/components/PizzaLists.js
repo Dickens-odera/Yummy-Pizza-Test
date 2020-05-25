@@ -47,7 +47,8 @@ class PizzaLists extends Component{
       this.listPizzas();
     }
     listPizzas(){
-      fetch('http://localhost:8000/api/v1/pizzas/list')
+      const uri = "https://yummy-pizza-store.herokuapp.com/"
+      fetch('https://yummy-pizza-store.herokuapp.com/api/v1/pizzas/list')
         .then(response => {
             return response.json();
         })

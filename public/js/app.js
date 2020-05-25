@@ -71956,7 +71956,8 @@ var Order = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       event.preventDefault();
-      fetch('http://localhost:8000/api/v1/orders/add', {
+      var uri = "https://yummy-pizza-store.herokuapp.com/";
+      fetch('https://yummy-pizza-store.herokuapp.com/api/v1/orders/add', {
         method: 'post',
         headers: {
           'Accept': 'application/json',
@@ -72196,7 +72197,8 @@ var PizzaLists = /*#__PURE__*/function (_Component2) {
     value: function listPizzas() {
       var _this3 = this;
 
-      fetch('http://localhost:8000/api/v1/pizzas/list').then(function (response) {
+      var uri = "https://yummy-pizza-store.herokuapp.com/";
+      fetch('https://yummy-pizza-store.herokuapp.com/api/v1/pizzas/list').then(function (response) {
         return response.json();
       }).then(function (items) {
         _this3.setState({
