@@ -71955,7 +71955,7 @@ var Order = /*#__PURE__*/function (_Component) {
     value: function onSubmit(event) {
       var _this2 = this;
 
-      //event.preventDefault();
+      event.preventDefault();
       fetch('api/v1/orders/add', {
         method: 'post',
         headers: {
