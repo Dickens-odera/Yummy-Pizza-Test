@@ -1,13 +1,12 @@
 # Yummy Pizza Test
 
-<img src="{{ asset('uploads/pizza1.png') }}" alt="pizza" style="width:100%" class="text-center">
+<img src="/uploads/pizza1.png" alt="pizza" style="width:100%" class="text-center">
 
 ## Overview
 This is a simple web application that enables clients to order pizza from the available menu
 
 ### Url
-<p>The aapplication can be found</p> 
-
+The application can be found at the url below:<br>
  [here](https://yummy-pizza-store.herokuapp.com)
  
 #### Installation (Backend)
