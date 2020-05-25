@@ -12,7 +12,7 @@ class App extends Component {
           <Header/>
           <Switch>
                 <Route exact path='/' component={PizzaLists} />
-                <Route exact path='/checkout' component={Order} Checkout/>
+                <Route exact path='/checkout' component={Order}/>
           </Switch>
         </div>
       </BrowserRouter>
