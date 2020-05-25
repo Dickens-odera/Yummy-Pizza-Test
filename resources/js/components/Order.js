@@ -42,9 +42,9 @@ class Order extends Component{
               },
               body: JSON.stringify(data)
             })
-              .then(res =>{
-                  res.json()
-              })
+            //   .then(res =>{
+            //       res.json()
+            //   })
               .then(items =>{
                   this.setState({
                     name:'',
