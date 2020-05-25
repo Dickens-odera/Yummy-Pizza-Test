@@ -1,6 +1,6 @@
 # Yummy Pizza Test
 ---
-<p align="center"><img src="public/uploads/pizza1.png" alt="pizza" style="width:100%" class="text-center"></p>
+<p align="center"><img src="public/uploads/pizza1.png" alt="pizza" style="width:100%; height:100px" class="text-center"></p>
 
 ## Overview
 This is a simple web application that enables clients to order pizza from the available menu
