@@ -23,8 +23,7 @@ class Order extends Component{
         this.setState({[e.target.name]:e.target.value})
     }
     onSubmit(event){
-            event.preventDefault();
-            //const uri = "https://yummy-pizza-store.herokuapp.com/"
+            //event.preventDefault();
             fetch('api/v1/orders/add',{
               method:'post',
               headers: {
