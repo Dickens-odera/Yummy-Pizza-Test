@@ -20,6 +20,8 @@
         "popper.js": "^1.12",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
+        "react-hook-form": "^5.7.2",
+        "react-hot-loader": "^4.12.21",
         "react-router-dom": "^5.2.0",
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",

@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import { useForm } from 'react-hook-form'
 import {Link} from 'react-router-dom'
+import { cold , setConfig} from 'react-hot-loader';
+
 class Order extends Component{
     constructor(props){
         super(props);
@@ -53,6 +56,7 @@ class Order extends Component{
               })
           }
 render(){
+    // const { register, handleSubmit, watch, errors } = useForm();
     return(
         <div className="container">
             <div className="row">
@@ -66,7 +70,10 @@ render(){
                         <div className="col-md-8">
                             <input className="form-control" name="name"
                             value={this.state.name}
-                            onChange={this.onChange.bind(this)}></input>
+                            onChange={this.onChange.bind(this)}
+                            // ref={register({ required: true })}
+                            >
+                            </input>
                         </div>
                         </div>
                         <div className="form-group row">
@@ -74,7 +81,9 @@ render(){
                         <div className="col-md-8">
                             <input className="form-control" name="email" type="email"
                             value={this.state.email}
-                            onChange={this.onChange.bind(this)}></input>
+                            onChange={this.onChange.bind(this)}
+                            // ref={register({ required: true })}
+                             ></input>
                         </div>
                         </div>
                         <div className="form-group row">
@@ -82,7 +91,9 @@ render(){
                         <div className="col-md-8">
                             <input className="form-control" name="address"
                             value={this.state.address}
-                            onChange={this.onChange.bind(this)}></input>
+                            onChange={this.onChange.bind(this)}
+                            // ref={register({ required: true })} 
+                            ></input>
                         </div>
                         </div>
                         <div className="form-group row">
@@ -90,7 +101,9 @@ render(){
                         <div className="col-md-8">
                             <input className="form-control" name="location"
                             value={this.state.location}
-                            onChange={this.onChange.bind(this)}></input>
+                            onChange={this.onChange.bind(this)}
+                            // ref={register({ required: true })} 
+                            ></input>
                         </div>
                         </div>
                         <div className="form-group row">
@@ -98,7 +111,9 @@ render(){
                         <div className="col-md-8">
                             <input className="form-control" name="phone"
                             value={this.state.phone}
-                            onChange={this.onChange.bind(this)}></input>
+                            onChange={this.onChange.bind(this)}
+                            // ref={register({ required: true })} 
+                            ></input>
                         </div>
                         </div>
                         <div className="form-group row">
