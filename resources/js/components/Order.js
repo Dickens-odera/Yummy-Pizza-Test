@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { useForm } from 'react-hook-form'
 import {Link} from 'react-router-dom'
 import { cold , setConfig} from 'react-hot-loader';
-
+import axios from 'axios'
 class Order extends Component{
     constructor(props){
         super(props);
@@ -24,26 +24,14 @@ class Order extends Component{
     }
     onSubmit(event){
             event.preventDefault();
-            fetch('api/v1/orders/add',{
-              method:'post',
-              mode: 'cors', // no-cors, *cors, same-origin
-              cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-              credentials: 'same-origin', // include, *same-origin, omit
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
+            const data ={
                 name:this.state.name,
                 email:this.state.email,
                 address:this.state.address,
-                location:this.state.location,
+                location:this.state.address,
                 phone:this.state.phone
-            })
-            })
-              .then(res =>{
-                  res.json()
-              })
+            }
+            axios.post('api/v1/orders/add',data)
               .then(items =>{
                   this.setState({
                     name:'',
