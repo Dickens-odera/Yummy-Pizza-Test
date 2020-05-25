@@ -28,7 +28,7 @@ cp .env.example .env
 ```
 <p>At the Created .env file add the follwing:</p>
 DB_PORT=3306<br>
-DB_DATABASE=<your_database_name><br>
+DB_DATABASE=<your_database_name></br>
 DB_USERNAME=root<br>
 
 Run the database migrations to create the tables
