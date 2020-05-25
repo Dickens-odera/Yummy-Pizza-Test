@@ -1,31 +1,6 @@
 import React, { Component } from 'react'
 //import image from '../'
-class PizzaItem extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      qty:0,
-      total:0
-    }
-  }
-    render(){
-      return(
-        <div className="col-md-4">
-        <div className="card">
-                <div className="card-header">My Cart</div>
-                <div className="card-body">
-                <button className="btn btn-sm btn-success">
-                    <i className="material-icons"
-                    total={this.state.qty}>shopping_cart</i>
-                    {this.state.qty}
-                </button><br></br> <br></br>
-                Total: $ {this.state.total}
-                </div>
-        </div>
-  </div>
-      )
-    }
-}
+
 class PizzaLists extends Component{
     constructor(props){
         super(props)
@@ -40,6 +15,8 @@ class PizzaLists extends Component{
         this.increaseCounter = this.increaseCounter.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.calculateTotal = this.calculateTotal.bind(this)
+        this.handleAddToCart = this.handleAddToCart.bind(this)
+        this.viewCart = this.viewCart.bind(this)
     }
 
     componentDidMount()
@@ -66,10 +43,9 @@ class PizzaLists extends Component{
           );
       })
     }
-     addToCart(){
-        this.setState({qty:this.state.qty + 1})
-        //console.log(this.state.qty)
-        this.props.handleTotal(this.props.price)
+     addToCart(item){
+        this.setState({qty:this.state.qty += 1})
+        console.log(this.state.qty)
     }
     increaseCounter()
     {
@@ -83,6 +59,12 @@ class PizzaLists extends Component{
     calculateTotal(price){
       this.setState({total:this.state.total + price})
       console.log(this.state.total);
+    }
+    handleAddToCart(e){
+      this.addToCart(this.item);
+    }
+    viewCart(items){
+      
     }
     render(){
         const { pizzas } = this.state
@@ -122,7 +104,10 @@ class PizzaLists extends Component{
                                             <td>{item.title}</td>
                                             <td>{item.description}</td>
                                             <td>$ {item.price}</td>
-                                            <button onClick={this.addToCart}  className="btn btn-sm btn-success"> <i className="material-icons">add_shopping_cart</i></button>
+                                            <button onClick={this.handleAddToCart}  
+                                                    className="btn btn-sm btn-success"> 
+                                                    <i className="material-icons">add_shopping_cart</i>
+                                                    </button>
                                             </tr>
                             )}
                             </tbody>
@@ -131,8 +116,22 @@ class PizzaLists extends Component{
                     </div>
                   </div>
                 </div>
-                <PizzaItem selectedPizza={this.state.currentItem}>
-                </PizzaItem>
+                <div className="col-md-4">
+                <div className="card">
+                        <div className="card-header">My Cart</div>
+                        <div className="card-body">
+                        <button className="btn btn-sm btn-success"
+                            onClick={this.viewCart}>
+                            <i className="material-icons"
+                            total={this.state.qty}>shopping_cart</i>
+                            {this.state.qty}
+                            
+                        </button>
+                        <br></br> <br></br>
+                        Total: $ {this.state.total}
+                        </div>
+                </div>
+          </div>
               </div>
             </div>
           )

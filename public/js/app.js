@@ -72130,70 +72130,31 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
  //import image from '../'
 
-var PizzaItem = /*#__PURE__*/function (_Component) {
-  _inherits(PizzaItem, _Component);
+var PizzaLists = /*#__PURE__*/function (_Component) {
+  _inherits(PizzaLists, _Component);
 
-  var _super = _createSuper(PizzaItem);
-
-  function PizzaItem(props) {
-    var _this;
-
-    _classCallCheck(this, PizzaItem);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      qty: 0,
-      total: 0
-    };
-    return _this;
-  }
-
-  _createClass(PizzaItem, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-md-4"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-header"
-      }, "My Cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-sm btn-success"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "material-icons",
-        total: this.state.qty
-      }, "shopping_cart"), this.state.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Total: $ ", this.state.total)));
-    }
-  }]);
-
-  return PizzaItem;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-var PizzaLists = /*#__PURE__*/function (_Component2) {
-  _inherits(PizzaLists, _Component2);
-
-  var _super2 = _createSuper(PizzaLists);
+  var _super = _createSuper(PizzaLists);
 
   function PizzaLists(props) {
-    var _this2;
+    var _this;
 
     _classCallCheck(this, PizzaLists);
 
-    _this2 = _super2.call(this, props);
-    _this2.state = {
+    _this = _super.call(this, props);
+    _this.state = {
       pizzas: [],
       qty: 0,
       total: 0,
       currentItem: null
     };
-    _this2.listPizzas = _this2.listPizzas.bind(_assertThisInitialized(_this2));
-    _this2.addToCart = _this2.addToCart.bind(_assertThisInitialized(_this2));
-    _this2.increaseCounter = _this2.increaseCounter.bind(_assertThisInitialized(_this2));
-    _this2.handleClick = _this2.handleClick.bind(_assertThisInitialized(_this2));
-    _this2.calculateTotal = _this2.calculateTotal.bind(_assertThisInitialized(_this2));
-    return _this2;
+    _this.listPizzas = _this.listPizzas.bind(_assertThisInitialized(_this));
+    _this.addToCart = _this.addToCart.bind(_assertThisInitialized(_this));
+    _this.increaseCounter = _this.increaseCounter.bind(_assertThisInitialized(_this));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.calculateTotal = _this.calculateTotal.bind(_assertThisInitialized(_this));
+    _this.handleAddToCart = _this.handleAddToCart.bind(_assertThisInitialized(_this));
+    _this.viewCart = _this.viewCart.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(PizzaLists, [{
@@ -72204,12 +72165,12 @@ var PizzaLists = /*#__PURE__*/function (_Component2) {
   }, {
     key: "listPizzas",
     value: function listPizzas() {
-      var _this3 = this;
+      var _this2 = this;
 
       fetch('api/v1/pizzas/list').then(function (response) {
         return response.json();
       }).then(function (items) {
-        _this3.setState({
+        _this2.setState({
           pizzas: items.data
         });
       });
@@ -72217,7 +72178,7 @@ var PizzaLists = /*#__PURE__*/function (_Component2) {
   }, {
     key: "renderPizzas",
     value: function renderPizzas() {
-      var _this4 = this;
+      var _this3 = this;
 
       return this.state.pizzas.map(function (pizza) {
         return (
@@ -72225,7 +72186,7 @@ var PizzaLists = /*#__PURE__*/function (_Component2) {
           //this.handleClick() method is invoked onClick.
           react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             onClick: function onClick() {
-              return _this4.handleClick(pizza);
+              return _this3.handleClick(pizza);
             },
             key: pizza.id
           }, pizza.title)
@@ -72234,12 +72195,11 @@ var PizzaLists = /*#__PURE__*/function (_Component2) {
     }
   }, {
     key: "addToCart",
-    value: function addToCart() {
+    value: function addToCart(item) {
       this.setState({
-        qty: this.state.qty + 1
-      }); //console.log(this.state.qty)
-
-      this.props.handleTotal(this.props.price);
+        qty: this.state.qty += 1
+      });
+      console.log(this.state.qty);
     }
   }, {
     key: "increaseCounter",
@@ -72264,9 +72224,17 @@ var PizzaLists = /*#__PURE__*/function (_Component2) {
       console.log(this.state.total);
     }
   }, {
+    key: "handleAddToCart",
+    value: function handleAddToCart(e) {
+      this.addToCart(this.item);
+    }
+  }, {
+    key: "viewCart",
+    value: function viewCart(items) {}
+  }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this4 = this;
 
       var pizzas = this.state.pizzas;
       var _width$height = {
@@ -72300,14 +72268,26 @@ var PizzaLists = /*#__PURE__*/function (_Component2) {
           className: "img-thumbnail rounded-circle mx-auto mb-2 shadow-sm",
           style: imgStyle
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$ ", item.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: _this5.addToCart,
+          onClick: _this4.handleAddToCart,
           className: "btn btn-sm btn-success"
-        }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "material-icons"
         }, "add_shopping_cart")));
-      }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PizzaItem, {
-        selectedPizza: this.state.currentItem
-      })));
+      }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-header"
+      }, "My Cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-sm btn-success",
+        onClick: this.viewCart
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "material-icons",
+        total: this.state.qty
+      }, "shopping_cart"), this.state.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Total: $ ", this.state.total)))));
     }
   }]);
 
