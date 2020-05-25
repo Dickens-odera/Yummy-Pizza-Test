@@ -72265,6 +72265,11 @@ var PizzaLists = /*#__PURE__*/function (_Component2) {
       var _this5 = this;
 
       var pizzas = this.state.pizzas;
+      var _width$height = {
+        width: '20px',
+        height: '40px'
+      },
+          imgStyle = _width$height.imgStyle;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container-fluid py-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -72288,7 +72293,8 @@ var PizzaLists = /*#__PURE__*/function (_Component2) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
           alt: "pizza",
-          className: "img-thumbnail rounded-circle mx-auto mb-2 shadow-sm"
+          className: "img-thumbnail rounded-circle mx-auto mb-2 shadow-sm",
+          style: imgStyle
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$ ", item.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: _this5.addToCart,
           className: "btn btn-sm btn-success"

@@ -86,6 +86,10 @@ class PizzaLists extends Component{
     }
     render(){
         const { pizzas } = this.state
+        const { imgStyle } = {
+          width:'20px',
+          height:'40px',
+        }
         return (
             <div className='container-fluid py-4'>
               <div className='row justify-content-center'>
@@ -112,7 +116,8 @@ class PizzaLists extends Component{
                                             <td>{item.id}</td>
                                             <td><img 
                                             src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="pizza"
-                                            className="img-thumbnail rounded-circle mx-auto mb-2 shadow-sm">
+                                            className="img-thumbnail rounded-circle mx-auto mb-2 shadow-sm"
+                                            style={imgStyle}>
                                             </img></td>
                                             <td>{item.title}</td>
                                             <td>{item.description}</td>
