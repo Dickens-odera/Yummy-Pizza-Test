@@ -26,6 +26,9 @@ class Order extends Component{
             event.preventDefault();
             fetch('api/v1/orders/add',{
               method:'post',
+              mode: 'cors', // no-cors, *cors, same-origin
+              cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+              credentials: 'same-origin', // include, *same-origin, omit
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
