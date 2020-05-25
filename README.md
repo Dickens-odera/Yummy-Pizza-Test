@@ -27,7 +27,7 @@ Make a copy of the .env.exaple and create a database in your db server
 ```php
 copy .env.example .env
 ```
-At the Created .env file add the follwing:
+<p>At the Created .env file add the follwing:</p>
 DB_PORT=3306<br>
 DB_DATABASE=<your_database_name><br>
 DB_USERNAME=root<br>
