@@ -28,9 +28,9 @@ Make a copy of the .env.exaple and create a database in your db server
 copy .env.example .env
 ```
 At the Created .env file add the follwing:
-DB_PORT=3306
-DB_DATABASE=<your_database_name>
-DB_USERNAME=root
+DB_PORT=3306<br>
+DB_DATABASE=<your_database_name><br>
+DB_USERNAME=root<br>
 
 Run the database migrations to create the tables
 ```php
@@ -38,6 +38,6 @@ php artisan migrate
 ```
 
 ### Installation (Frontend)
-npm install
-npm run watch
+<p>npm install</p>
+<p>npm run watch</p>
 
