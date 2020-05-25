@@ -93,8 +93,8 @@ class PizzaLists extends Component{
                   <div className='card primary'>
                     <div className='card-header text-center text-uppercase'>Pizza Menu</div>
                     <div className='card-body'>
-                      <div>
-                        <table className="table">
+                      <div className="table-responsive">
+                        <table className="table table table-bordered">
                             <thead>
                                 <tr>
                                     <th>ID</th>
