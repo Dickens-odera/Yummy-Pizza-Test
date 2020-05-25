@@ -14,6 +14,10 @@ first clone the repository
 ```php
 git clone https://github.com/Dickens-odera/Yummy-Pizza-Test.git
 ```
+Change the directory to the clone path
+```php
+cd Yummy-Pizza-Test
+```
 then install the packages with composer
 ```php
 composer install
@@ -48,3 +52,9 @@ php artisan serve
 For the frontend scafolding run the following command:
 
 npm run watch
+
+### Feature Testing
+Run the following command in your terminal and the applications path
+```php
+./vendor/bin/phpunit
+```
