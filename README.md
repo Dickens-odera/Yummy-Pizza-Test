@@ -24,7 +24,7 @@ php artisan key:generate
 ```
 Make a copy of the .env.exaple and create a database in your db server
 ```php
-copy .env.example .env
+cp .env.example .env
 ```
 <p>At the Created .env file add the follwing:</p>
 DB_PORT=3306<br>
