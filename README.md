@@ -38,5 +38,13 @@ php artisan migrate
 
 ### Installation (Frontend)
 <p>npm install</p>
-<p>npm run watch</p>
 
+## Run the app (Backend)
+Open your terminal and type the following command:
+```php
+php artisan serve
+```
+## Run the app (Frontend)
+For the frontend scafolding run the following command:
+
+npm run watch
